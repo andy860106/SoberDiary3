@@ -4,6 +4,7 @@ import ubicomp.soberdiary3.test.ui.TestQuestionDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -129,6 +130,12 @@ public class TiggerActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			note_smile.setBackgroundColor(Color.WHITE);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
 			items.setAdapter(adapter_smile);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
@@ -142,6 +149,13 @@ public class TiggerActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.WHITE);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
 			items.setAdapter(adapter_notgood);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
@@ -155,6 +169,12 @@ public class TiggerActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.WHITE);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
 			items.setAdapter(adapter_cry);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
@@ -168,6 +188,13 @@ public class TiggerActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.WHITE);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
 			items.setAdapter(adapter_try);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
@@ -181,6 +208,13 @@ public class TiggerActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.WHITE);
+			
 			items.setAdapter(adapter_urge);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  

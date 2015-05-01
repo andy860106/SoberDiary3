@@ -310,15 +310,7 @@ public class SettingActivity extends Activity {
 	@Override
 	protected void onPause() {
 
-		int[] socialSelections = new int[3];
-		int social_idx = 0;
-		boolean[] socialSelected = socialGroup.getResult();
-		for (int i = 0; i < socialSelected.length; ++i) {
-			if (socialSelected[i])
-				socialSelections[social_idx++] = i;
-		}
-		PreferenceControl.setConnectSocialHelpIdx(socialSelections);
-
+	
 		PreferenceControl.setNotificationTimeIdx(notificationGroup.getResult());
 
 		ClickLog.Log(ClickLogId.SETTING_LEAVE);
