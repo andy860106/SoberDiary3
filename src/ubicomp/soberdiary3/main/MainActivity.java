@@ -15,8 +15,6 @@ import ubicomp.soberdiary3.system.clicklog.ClickLog;
 import ubicomp.soberdiary3.system.clicklog.ClickLogId;
 import ubicomp.soberdiary3.system.config.Config;
 import ubicomp.soberdiary3.system.config.PreferenceControl;
-import ubicomp.soberdiary3.system.gcm.GCMNotificationControl;
-import ubicomp.soberdiary3.system.gcm.GCMUtilities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -127,7 +125,7 @@ public class MainActivity extends FragmentActivity {
 		loadingPageTimer = new LoadingPageTimer();
 		loadingPageTimer.start();
 
-		GCMUtilities.onCreate(getApplicationContext());
+		//GCMUtilities.onCreate(getApplicationContext());
 
 	}
 
@@ -237,8 +235,8 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	protected void onDestroy() {
-		GCMUtilities.onDestroy(getApplicationContext());
-		GCMNotificationControl.generate(App.getContext());
+		//GCMUtilities.onDestroy(getApplicationContext());
+		//GCMNotificationControl.generate(App.getContext());
 		super.onDestroy();
 	}
 

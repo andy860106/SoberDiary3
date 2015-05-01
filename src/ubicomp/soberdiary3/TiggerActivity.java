@@ -1,5 +1,6 @@
 package ubicomp.soberdiary3;
 
+import ubicomp.soberdiary3.main.ui.toast.CustomToast;
 import ubicomp.soberdiary3.test.ui.TestQuestionDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -69,7 +70,8 @@ public class TiggerActivity extends Activity {
         dialog.setPositiveButton("已完成", new DialogInterface.OnClickListener() {  
             public void onClick(DialogInterface dialog, int which) {  
                 // 按下PositiveButton要做的事  
-             Toast.makeText(TiggerActivity.this, "Great Job!", Toast.LENGTH_SHORT).show();
+             //Toast.makeText(TiggerActivity.this, "Great Job!", Toast.LENGTH_SHORT).show();
+            	CustomToast.generateToast(R.string.after_questionnaire, 2);
              setResult(RESULT_OK);
              finish();
             }  
@@ -78,6 +80,8 @@ public class TiggerActivity extends Activity {
         	public void onClick(DialogInterface dialog, int which) {
         		// TODO Auto-generated method stub
         		Toast.makeText(TiggerActivity.this, "要記得做喔!", Toast.LENGTH_SHORT).show();
+        		setResult(RESULT_OK);
+                finish();
         	}
         });
         
@@ -97,7 +101,6 @@ public class TiggerActivity extends Activity {
         adapter_urge.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, R.array.note_conflict);
         //adapter.setNotifyOnChange(true);
-        //TODO: 按下按鈕後切回下個頁面
         
         
 		//msgBox = new TestQuestionDialog(this, this, main_layout);

@@ -10,6 +10,7 @@ import ubicomp.soberdiary3.data.file.MainStorage;
 import ubicomp.soberdiary3.main.App;
 import ubicomp.soberdiary3.main.GPSService;
 import ubicomp.soberdiary3.main.MainActivity;
+import ubicomp.soberdiary3.main.TutorialActivity;
 import ubicomp.soberdiary3.main.UploadService;
 import ubicomp.soberdiary3.main.ui.EnablePage;
 import ubicomp.soberdiary3.main.ui.LoadingDialogControl;
@@ -906,15 +907,16 @@ public class TestFragment extends Fragment implements GPSInterface,
 			if (!MainActivity.getMainActivity().getClickable())
 				return;
 			ClickLog.Log(ClickLogId.TEST_TUTORIAL_BUTTON);
-			showTutorial();
+			//showTutorial();
+			showTrigger();
 		}
 	}
 
 	private void showTutorial() {
 		Intent intent = new Intent();
-		intent.setClass(activity, TiggerActivity.class);
-		
-		startActivityForResult(intent, 2);
+		intent.setClass(activity, TutorialActivity.class);
+		activity.startActivity(intent);
+		//startActivityForResult(intent, 2);
 	}
 	
 	@Override
@@ -946,7 +948,7 @@ public class TestFragment extends Fragment implements GPSInterface,
 	private void showTrigger() {
 		Intent intent = new Intent();
 		intent.setClass(activity, TiggerActivity.class);
-		activity.startActivity(intent);
+		startActivityForResult(intent, 2);
 	}
 	
 
