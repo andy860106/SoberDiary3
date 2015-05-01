@@ -4,7 +4,6 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-import ubicomp.soberdiary3.ListTestActivity;
 import ubicomp.soberdiary3.R;
 import ubicomp.soberdiary3.TiggerActivity;
 import ubicomp.soberdiary3.data.file.MainStorage;
@@ -265,12 +264,7 @@ public class TestFragment extends Fragment implements GPSInterface,
 			notificationDialog.initialize();*/
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 0x10) {
-			runGPS();
-		}
-	}
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -810,20 +804,7 @@ public class TestFragment extends Fragment implements GPSInterface,
 		}
 	}
 
-	private class TutorialOnClickListener implements View.OnClickListener {
-		public void onClick(View v) {
-			if (!MainActivity.getMainActivity().getClickable())
-				return;
-			ClickLog.Log(ClickLogId.TEST_TUTORIAL_BUTTON);
-			showTutorial();
-		}
-	}
 
-	private void showTutorial() {
-		Intent intent = new Intent();
-		intent.setClass(activity, TiggerActivity.class);
-		activity.startActivity(intent);
-	}
 
 	@Override
 	public void setPairMessage() {
@@ -920,6 +901,37 @@ public class TestFragment extends Fragment implements GPSInterface,
 		return showCountDown;
 	}
 	
+	private class TutorialOnClickListener implements View.OnClickListener {
+		public void onClick(View v) {
+			if (!MainActivity.getMainActivity().getClickable())
+				return;
+			ClickLog.Log(ClickLogId.TEST_TUTORIAL_BUTTON);
+			showTutorial();
+		}
+	}
+
+	private void showTutorial() {
+		Intent intent = new Intent();
+		intent.setClass(activity, TiggerActivity.class);
+		
+		startActivityForResult(intent, 2);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		//MainActivity.getMainActivity().enableTabAndClick(true);
+		MainActivity.getMainActivity().changeTab(1); //沒進來
+		
+		//Log.i("abc", "YESSSSS");
+		
+		if (requestCode == 0x10) {
+			runGPS();
+		}
+
+	}
+	
+
 	//------------------add------------------------
 	
 	private class TriggerOnClickListener implements View.OnClickListener {

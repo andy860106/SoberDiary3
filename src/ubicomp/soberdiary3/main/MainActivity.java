@@ -258,7 +258,7 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
-	public void changeTab(int pos) {
+	public void changeTab(int pos) {                             //change Fragment
 		TabWidget tabWidget = tabHost.getTabWidget();
 		int count = tabWidget.getChildCount();
 		if (pos >= 0 && pos < count) {
@@ -527,6 +527,7 @@ public class MainActivity extends FragmentActivity {
 		}
 		return super.onKeyUp(keyCode, event);
 	}
+	
 
 	private void setSensorCountDownTimer() {
 		long lastTime = PreferenceControl.getLastTestTime();
