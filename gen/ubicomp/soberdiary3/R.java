@@ -32,8 +32,16 @@ public final class R {
         public static final int emotion_manage_related=0x7f080002;
         public static final int emotion_state=0x7f080022;
         public static final int fb_selection=0x7f080003;
+        public static final int note_conflict=0x7f08003e;
         public static final int note_date=0x7f080037;
         public static final int note_detail=0x7f080036;
+        public static final int note_negative=0x7f080039;
+        public static final int note_notgood=0x7f08003a;
+        public static final int note_play=0x7f080040;
+        public static final int note_positive=0x7f08003b;
+        public static final int note_selftest=0x7f08003c;
+        public static final int note_social=0x7f08003f;
+        public static final int note_temptation=0x7f08003d;
         public static final int note_time_slot=0x7f080038;
         public static final int notification_comments=0x7f080034;
         public static final int notification_subtitles=0x7f080033;
@@ -77,7 +85,7 @@ public final class R {
         public static final int radar_3_1=0x7f080030;
         public static final int radar_3_2=0x7f080031;
         public static final int setting_time_gap=0x7f080027;
-        public static final int test_guide_msg=0x7f080039;
+        public static final int test_guide_msg=0x7f080041;
         public static final int trigger_list=0x7f080035;
         public static final int tutorial_step=0x7f080024;
     }
@@ -551,9 +559,6 @@ public final class R {
         public static final int gcm_scroll_view=0x7f0b00a0;
         public static final int gcm_text=0x7f0b00a1;
         public static final int help_background=0x7f0b00ef;
-        public static final int imageView3=0x7f0b0015;
-        public static final int imageView4=0x7f0b0016;
-        public static final int imageView5=0x7f0b0017;
         public static final int listView1=0x7f0b002b;
         public static final int loading_page=0x7f0b0036;
         public static final int loading_progress=0x7f0b00a3;
@@ -617,10 +622,14 @@ public final class R {
         public static final int msg_question_layout=0x7f0b00ad;
         public static final int msg_send=0x7f0b00d4;
         public static final int msg_title=0x7f0b00ae;
-        public static final int note_cancel=0x7f0b0020;
-        public static final int note_confirm=0x7f0b001f;
+        public static final int note_cancel=0x7f0b001f;
+        public static final int note_confirm=0x7f0b0020;
+        public static final int note_cry=0x7f0b0015;
+        public static final int note_items=0x7f0b0019;
         public static final int note_notgood=0x7f0b0014;
         public static final int note_smile=0x7f0b0013;
+        public static final int note_try=0x7f0b0016;
+        public static final int note_urge=0x7f0b0017;
         public static final int question_all_layout=0x7f0b00a8;
         public static final int question_animation=0x7f0b0067;
         public static final int question_animation_center_button=0x7f0b0064;
@@ -668,7 +677,6 @@ public final class R {
         public static final int setting_main_layout=0x7f0b0050;
         public static final int setting_main_scroll=0x7f0b004f;
         public static final int setting_title_layout=0x7f0b004e;
-        public static final int spinner1=0x7f0b0019;
         public static final int spinner2=0x7f0b001b;
         public static final int spinner3=0x7f0b001c;
         public static final int start_date_setting=0x7f0b003e;

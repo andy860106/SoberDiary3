@@ -49,6 +49,7 @@
             android:id="@+id/note_smile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
             android:src="@drawable/note_smile" />
 
         <ImageView
@@ -58,7 +59,7 @@
             android:src="@drawable/note_not_good" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/note_cry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/note_cry" />
@@ -71,13 +72,13 @@
         android:gravity="center" >
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/note_try"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/note_try" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/note_urge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/note_urge" />
@@ -97,11 +98,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/note_items"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/note_detail" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 

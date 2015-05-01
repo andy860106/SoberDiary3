@@ -371,6 +371,74 @@
         <item>下午</item>
         <item>晚上</item>
     </string-array>
+    <string-array name="note_negative">
+        <item>沮喪</item>
+        <item>走投無路</item>
+        <item>無聊</item>
+        <item>寂寞</item>
+        <item>緊張</item>
+        <item>罪惡感</item>
+        <item>壓力大</item>
+        <item>生氣</item>
+        <item>困惑</item>
+    </string-array>
+    <string-array name="note_notgood">
+        <item>病懨懨</item>
+        <item>失眠</item>
+        <item>想要保持清醒</item>
+        <item>想減重</item>
+        <item>頭痛或其他痛</item>
+    </string-array>
+    <string-array name="note_positive">
+        <item>高興</item>
+        <item>感覺放鬆</item>
+        <item>感到興奮</item>
+        <item>對生活滿意</item>
+        <item>想起美好的事</item>
+    </string-array>
+    <string-array name="note_selftest">
+        <item>測試能否適量飲酒</item>
+        <item>想證明酒精對自己不是問題</item>
+        <item>想知道還有沒有酒癮</item>
+        <item>想試著和常喝酒的朋友出去</item>
+        <item>想測試能否在其他人喝酒時自己不喝酒</item>
+    </string-array>
+     <string-array name="note_temptation">
+        <item>處在常喝或常買酒的地方</item>
+        <item>看到讓我想喝酒的東西</item>
+        <item>吸毒</item>
+        <item>聽到別人在談論酒</item>
+        <item>想到喝酒帶來的愉悅感</item>
+    </string-array>
+     <string-array name="note_conflict">
+        <item>在他人面前感到不自在</item>
+        <item>難以對他人表達情感</item>
+        <item>被別人討厭</item>
+        <item>計畫被別人打亂</item>
+        <item>家人壓力</item>
+        <item>工作上衝突</item>
+        <item>家庭糾紛</item>
+        <item>沒達到他人期望</item>
+        <item>需要勇氣面對他人</item>
+        <item>覺得被某人掌握</item> 
+    </string-array>
+    <string-array name="note_social">
+        <item>朋友家,朋友邀酒</item>
+        <item>朋友建議到某處喝酒</item>
+        <item>其他人在喝酒請我加入</item>
+        <item>被邀酒,難以拒絕</item>
+        <item>在每個人都飲酒的地方</item>
+    </string-array>
+    <string-array name="note_play">
+        <item>遇到老朋友</item>
+        <item>跟親密好友在一起</item>
+        <item>想要助興</item>
+        <item>想要慶祝</item>
+        <item>想要助性</item>
+    </string-array>
+    
+    
+    
 
     <string name="hint_note_detail">簡述記事內容</string>
     <string name="title_activity_list_test">ListTestActivity</string>
