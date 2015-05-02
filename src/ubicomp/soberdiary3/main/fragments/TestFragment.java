@@ -17,6 +17,7 @@ import ubicomp.soberdiary3.main.ui.LoadingDialogControl;
 import ubicomp.soberdiary3.main.ui.ScaleOnTouchListener;
 import ubicomp.soberdiary3.main.ui.ScreenSize;
 import ubicomp.soberdiary3.main.ui.Typefaces;
+import ubicomp.soberdiary3.main.ui.toast.CustomToast;
 import ubicomp.soberdiary3.main.ui.toast.CustomToastSmall;
 import ubicomp.soberdiary3.system.check.DefaultCheck;
 import ubicomp.soberdiary3.system.clicklog.ClickLog;
@@ -51,7 +52,9 @@ import ubicomp.soberdiary3.test.ui.TestQuestionCaller;
 import ubicomp.soberdiary3.test.ui.TestQuestionDialog;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -145,6 +148,8 @@ public class TestFragment extends Fragment implements GPSInterface,
 	private EditText debugMsg;
 	private ChangeMsgHandler msgHandler;
 	private TextView debugBracValueView;
+	
+	private AlertDialog.Builder dialog;
 
 	private static final int[] BLOW_RESOURCE = { 0, R.drawable.test_progress_1,
 			R.drawable.test_progress_2, R.drawable.test_progress_3,
@@ -311,6 +316,29 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 		notificationDialog = new NotificationDialog(testFragment.getActivity(),
 				main_layout, testFragment, testFragment);*/
+		
+		dialog = new AlertDialog.Builder(MainActivity.getMainActivity());
+        dialog.setTitle("應對建議");
+        dialog.setMessage("請試著想像自己躺在海上漂浮著");
+        //dialog.setIcon(android.R.drawable.ic_dialog_alert);
+        dialog.setCancelable(false);  
+        dialog.setPositiveButton("已完成", new DialogInterface.OnClickListener() {  
+            public void onClick(DialogInterface dialog, int which) {  
+                // 按下PositiveButton要做的事  
+             //Toast.makeText(TiggerActivity.this, "Great Job!", Toast.LENGTH_SHORT).show();
+            	CustomToast.generateToast(R.string.after_questionnaire, 2);
+             //setResult(RESULT_OK);
+             //finish();
+            }  
+        }); 
+        dialog.setNegativeButton("下次做", new DialogInterface.OnClickListener() {
+        	public void onClick(DialogInterface dialog, int which) {
+        		// TODO Auto-generated method stub
+        		//Toast.makeText(TiggerActivity2.this, "要記得做喔!", Toast.LENGTH_SHORT).show();
+        		//setResult(RESULT_OK);
+                //finish();
+        	}
+        });
 
 		return view;
 	}
@@ -923,7 +951,10 @@ public class TestFragment extends Fragment implements GPSInterface,
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		//MainActivity.getMainActivity().enableTabAndClick(true);
-		MainActivity.getMainActivity().changeTab(1); //沒進來
+		MainActivity.getMainActivity().changeTab(1); 
+		dialog.show();
+		
+		
 		
 		//Log.i("abc", "YESSSSS");
 		

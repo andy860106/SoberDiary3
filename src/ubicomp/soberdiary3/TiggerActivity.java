@@ -1,5 +1,7 @@
 package ubicomp.soberdiary3;
 
+import java.util.List;
+
 import ubicomp.soberdiary3.main.ui.toast.CustomToast;
 import ubicomp.soberdiary3.test.ui.TestQuestionDialog;
 import android.app.Activity;
@@ -7,7 +9,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -24,6 +31,7 @@ public class TiggerActivity extends Activity {
 	private ImageView note_smile, note_notgood, note_cry, note_try, note_urge;
 	private Spinner items;
 	
+	
 	private Activity activity;
 	
 	private TestQuestionDialog msgBox;
@@ -31,6 +39,16 @@ public class TiggerActivity extends Activity {
 	private AlertDialog.Builder dialog;
 	
 	private ArrayAdapter adapter_smile, adapter_notgood, adapter_cry, adapter_try, adapter_urge;
+	
+	private ViewPager viewPager;
+	//private StatisticPagerAdapter typeViewAdapter;
+	//private TriggerTypeAdapter typeViewAdapter;
+	private LayoutInflater inflater;
+	private MyViewPagerAdapter typeViewAdapter;
+	private View view1, view2;
+	private List<View> views;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,27 +59,29 @@ public class TiggerActivity extends Activity {
 		
 		confirm_button =(Button)findViewById(R.id.note_confirm);
 		cancel_button =(Button)findViewById(R.id.note_cancel);
+		
 		note_smile =(ImageView)findViewById(R.id.note_smile);
 		note_notgood =(ImageView)findViewById(R.id.note_notgood);
 		note_cry =(ImageView)findViewById(R.id.note_cry);
 		note_try =(ImageView)findViewById(R.id.note_try);
-		note_urge=(ImageView)findViewById(R.id.note_urge);;
-		
-		items = (Spinner)findViewById(R.id.note_items);
-		
-		
+		note_urge=(ImageView)findViewById(R.id.note_urge);
 		note_smile.setOnClickListener(new smileOnClickListener());
 		note_notgood.setOnClickListener(new notgoodOnClickListener());
 		note_cry.setOnClickListener(new cryOnClickListener());
 		note_try.setOnClickListener(new tryOnClickListener());
 		note_urge.setOnClickListener(new urgeOnClickListener());
 		
+	
+		items = (Spinner)findViewById(R.id.note_items);
+		
+		viewPager = (ViewPager)findViewById(R.id.type_page);
+		
+		
+		
 		confirm_button.setOnClickListener(new confirmOnClickListener());
 		cancel_button.setOnClickListener(new confirmOnClickListener());
-		
-		
-		
-		
+		//
+
 		dialog = new AlertDialog.Builder(this);
         dialog.setTitle("應對建議");
         dialog.setMessage("請試著想像自己躺在海上漂浮著");
@@ -117,6 +137,40 @@ public class TiggerActivity extends Activity {
 		
 		
 	}
+	public class MyViewPagerAdapter extends PagerAdapter{
+		private List<View> mListViews;
+		
+		public MyViewPagerAdapter(List<View> mListViews) {
+			this.mListViews = mListViews;
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) 	{	
+			container.removeView(mListViews.get(position));
+		}
+
+
+		@Override
+		public Object instantiateItem(ViewGroup container, int position) {			
+			 container.addView(mListViews.get(position), 0);
+			 return mListViews.get(position);
+		}
+
+		@Override
+		public int getCount() {			
+			return  mListViews.size();
+		}
+		
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {			
+			return arg0==arg1;
+		}
+	}
+	
+
+	
+	
+	
 	private class SpinnerXMLSelectedListener implements OnItemSelectedListener{
 		@Override
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
@@ -142,7 +196,7 @@ public class TiggerActivity extends Activity {
 			items.setAdapter(adapter_smile);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
-			
+	        items.performClick();
 			//ialog.show();
 			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
@@ -153,6 +207,7 @@ public class TiggerActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			
+			
 			note_smile.setBackgroundColor(Color.DKGRAY);
 			note_notgood.setBackgroundColor(Color.WHITE);
 			note_cry.setBackgroundColor(Color.DKGRAY);
@@ -162,7 +217,7 @@ public class TiggerActivity extends Activity {
 			items.setAdapter(adapter_notgood);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
-			
+	        items.performClick();
 			//ialog.show();
 			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
@@ -181,7 +236,7 @@ public class TiggerActivity extends Activity {
 			items.setAdapter(adapter_cry);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
-			
+	        items.performClick();
 			//ialog.show();
 			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
@@ -201,7 +256,7 @@ public class TiggerActivity extends Activity {
 			items.setAdapter(adapter_try);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
-			
+	        items.performClick();
 			//ialog.show();
 			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
@@ -221,7 +276,7 @@ public class TiggerActivity extends Activity {
 			items.setAdapter(adapter_urge);
 	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 	        items.setVisibility(View.VISIBLE);  
-			
+	        items.performClick();
 			//ialog.show();
 			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
@@ -233,7 +288,10 @@ public class TiggerActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			dialog.show();
+			
+			setResult(RESULT_OK);
+            finish();
+			//dialog.show();
 			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
 	}

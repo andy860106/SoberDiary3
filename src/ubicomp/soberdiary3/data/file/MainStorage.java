@@ -26,7 +26,7 @@ public class MainStorage {
 			if (Environment.getExternalStorageState().equals(
 					Environment.MEDIA_MOUNTED))
 				mainStorage = new File(
-						Environment.getExternalStorageDirectory(), "soberDiary");
+						Environment.getExternalStorageDirectory(), "soberDiary3");
 			else
 				mainStorage = new File(App.getContext().getFilesDir(),
 						"soberDiary");

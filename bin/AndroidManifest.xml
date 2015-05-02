@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ubicomp.soberdiary3"
     android:installLocation="auto"
-    android:versionCode="4"
-    android:versionName="0.04" >
+    android:versionCode="5"
+    android:versionName="0.05" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -151,11 +151,22 @@
         </activity>
         <activity
             android:name=".TiggerActivity"
-            android:label="@string/title_activity_tigger" >
+            android:label="@string/title_activity_tigger"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".TiggerActivity2"
+            android:label="@string/title_activity_tigger"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".ListTestActivity"
             android:label="@string/title_activity_list_test" >
+        </activity>
+        <activity
+            android:name=".main.EmotionActivity"
+            android:label="@string/title_activity_list_test" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
     </application>
 
