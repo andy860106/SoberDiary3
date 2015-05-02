@@ -8,7 +8,6 @@ import ubicomp.soberdiary3.main.ui.toast.CustomToastSmall;
 import ubicomp.soberdiary3.system.clicklog.ClickLog;
 import ubicomp.soberdiary3.system.clicklog.ClickLogId;
 import ubicomp.soberdiary3.system.config.PreferenceControl;
-import ubicomp.soberdiary3.test.gps.GPSInterface;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -28,7 +27,6 @@ import android.widget.TextView;
 public class TestQuestionDialog {
 
 	private TestQuestionCaller testQuestionCaller;
-	private GPSInterface gpsInterface;
 	private Context context;
 	private LayoutInflater inflater;
 	private RelativeLayout boxLayout = null;
@@ -88,10 +86,9 @@ public class TestQuestionDialog {
 	 * @param mainLayout
 	 *            layout contains the dialog
 	 */
-	public TestQuestionDialog(GPSInterface gps,
+	public TestQuestionDialog(
 			TestQuestionCaller testQuestionCaller, RelativeLayout mainLayout) {
 		this.testQuestionCaller = testQuestionCaller;
-		this.gpsInterface = gps;
 		this.context = App.getContext();
 		this.inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -287,7 +284,6 @@ public class TestQuestionDialog {
 			int emotion = emotionSeekBar.getProgress();
 
 			testQuestionCaller.writeQuestionFile(emotion, craving);
-			gpsInterface.initializeGPS(enableGPS);
 		}
 	}
 
@@ -308,7 +304,6 @@ public class TestQuestionDialog {
 			int emotion = -1;
 
 			testQuestionCaller.writeQuestionFile(emotion, craving);
-			gpsInterface.initializeGPS(enableGPS);
 		}
 	}
 

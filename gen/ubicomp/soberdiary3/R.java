@@ -889,6 +889,7 @@ public final class R {
         public static final int connect_null=0x7f0900b6;
         public static final int connect_to_emotion_hot_line=0x7f0900b5;
         public static final int connect_to_family=0x7f0900b3;
+        public static final int coping_skill=0x7f090118;
         public static final int craving=0x7f090065;
         public static final int craving_short=0x7f090066;
         public static final int current_version=0x7f0900c8;
@@ -969,7 +970,7 @@ public final class R {
         public static final int happ_design=0x7f0900c5;
         public static final int hello_world=0x7f090116;
         public static final int high=0x7f09006d;
-        public static final int hint_note_detail=0x7f090118;
+        public static final int hint_note_detail=0x7f09011a;
         public static final int homepage=0x7f0900f3;
         public static final int inspire_help=0x7f09002f;
         public static final int intel_ntu=0x7f0900c3;
@@ -1074,6 +1075,7 @@ public final class R {
         public static final int storytelling_test_question=0x7f0900f6;
         public static final int storytelling_test_title=0x7f0900f5;
         public static final int storytelling_test_toast=0x7f0900f8;
+        public static final int suggestion1=0x7f090119;
         public static final int taipei_city_hospital=0x7f0900c4;
         public static final int testTimeCheckToast=0x7f0900c9;
         public static final int test_fail=0x7f09005f;
@@ -1105,7 +1107,7 @@ public final class R {
         public static final int test_guide_zero_duration=0x7f090094;
         public static final int test_none=0x7f090060;
         public static final int test_pass=0x7f09005e;
-        public static final int title_activity_list_test=0x7f090119;
+        public static final int title_activity_list_test=0x7f09011b;
         public static final int title_activity_tigger=0x7f090117;
         public static final int title_activity_trigger=0x7f090115;
         public static final int today=0x7f090103;

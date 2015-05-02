@@ -18,7 +18,6 @@ import ubicomp.soberdiary3.data.structure.TimeValue;
 import ubicomp.soberdiary3.data.structure.UserVoiceFeedback;
 import ubicomp.soberdiary3.data.structure.UserVoiceRecord;
 import ubicomp.soberdiary3.main.App;
-import ubicomp.soberdiary3.main.GPSService;
 import ubicomp.soberdiary3.system.check.StartDateCheck;
 import ubicomp.soberdiary3.system.check.WeekNumCheck;
 import ubicomp.soberdiary3.system.config.PreferenceControl;
@@ -369,17 +368,10 @@ public class DatabaseControl {
 		synchronized (sqlLock) {
 			db = dbHelper.getReadableDatabase();
 			long cur_ts = System.currentTimeMillis();
-			long gps_ts = PreferenceControl.getGPSStartTime()
-					+ GPSService.GPS_TOTAL_TIME;
 			String sql;
-			if (cur_ts <= gps_ts) {
-				long gps_detection_ts = PreferenceControl
-						.getDetectionTimestamp();
-				sql = "SELECT * FROM Detection WHERE upload = 0 AND ts <> "
-						+ gps_detection_ts + " ORDER BY ts ASC";
-			} else {
-				sql = "SELECT * FROM Detection WHERE upload = 0  ORDER BY ts ASC";
-			}
+
+			sql = "SELECT * FROM Detection WHERE upload = 0  ORDER BY ts ASC";
+
 			Cursor cursor = db.rawQuery(sql, null);
 			int count = cursor.getCount();
 			if (count == 0) {
@@ -2121,17 +2113,12 @@ public class DatabaseControl {
 			String sql;
 			Cursor cursor;
 			long cur_ts = System.currentTimeMillis();
-			long gps_ts = PreferenceControl.getGPSStartTime()
-					+ GPSService.GPS_TOTAL_TIME;
 
-			if (cur_ts <= gps_ts) {
-				long gps_detection_ts = PreferenceControl
-						.getDetectionTimestamp();
-				sql = "SELECT * FROM UserVoiceFeedback WHERE upload = 0 AND detectionTs <> "
-						+ gps_detection_ts + " ORDER BY ts ASC";
-			} else {
-				sql = "SELECT * FROM UserVoiceFeedback WHERE upload = 0";
-			}
+
+
+		
+			sql = "SELECT * FROM UserVoiceFeedback WHERE upload = 0";
+			
 			cursor = db.rawQuery(sql, null);
 			int count = cursor.getCount();
 			if (count == 0) {

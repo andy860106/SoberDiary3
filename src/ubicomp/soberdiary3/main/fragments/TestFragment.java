@@ -8,7 +8,6 @@ import ubicomp.soberdiary3.R;
 import ubicomp.soberdiary3.TiggerActivity;
 import ubicomp.soberdiary3.data.file.MainStorage;
 import ubicomp.soberdiary3.main.App;
-import ubicomp.soberdiary3.main.GPSService;
 import ubicomp.soberdiary3.main.MainActivity;
 import ubicomp.soberdiary3.main.TutorialActivity;
 import ubicomp.soberdiary3.main.UploadService;
@@ -19,6 +18,7 @@ import ubicomp.soberdiary3.main.ui.ScreenSize;
 import ubicomp.soberdiary3.main.ui.Typefaces;
 import ubicomp.soberdiary3.main.ui.toast.CustomToast;
 import ubicomp.soberdiary3.main.ui.toast.CustomToastSmall;
+import ubicomp.soberdiary3.statistic.ui.QuestionnaireDialog;
 import ubicomp.soberdiary3.system.check.DefaultCheck;
 import ubicomp.soberdiary3.system.clicklog.ClickLog;
 import ubicomp.soberdiary3.system.clicklog.ClickLogId;
@@ -44,8 +44,6 @@ import ubicomp.soberdiary3.test.data.BracValueDebugHandler;
 import ubicomp.soberdiary3.test.data.BracValueFileHandler;
 import ubicomp.soberdiary3.test.data.ImageFileHandler;
 import ubicomp.soberdiary3.test.data.QuestionFile;
-import ubicomp.soberdiary3.test.gps.GPSInitTask;
-import ubicomp.soberdiary3.test.gps.GPSInterface;
 import ubicomp.soberdiary3.test.ui.FeedbackDialogCaller;
 import ubicomp.soberdiary3.test.ui.NotificationDialogCaller;
 import ubicomp.soberdiary3.test.ui.TestQuestionCaller;
@@ -82,7 +80,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class TestFragment extends Fragment implements GPSInterface,
+public class TestFragment extends Fragment implements 
 		TestQuestionCaller, BluetoothDebugger, BluetoothMessageUpdater,
 		BluetoothCaller, CameraCaller, EnablePage, NotificationDialogCaller,
 		FeedbackDialogCaller {
@@ -105,7 +103,6 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 	// GPS
 	private LocationManager locationManager;
-	private GPSInitTask gpsInitTask;
 	private boolean gps_state = false;
 
 	// Bluetooth
@@ -129,6 +126,7 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 	private RelativeLayout main_layout;
 	private TestQuestionDialog msgBox;
+	private QuestionnaireDialog msgBox2;
 	//private FeedbackDialog feedbackBox;
 
 	private FailMessageHandler failBgHandler;
@@ -165,6 +163,8 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 	private static SoundPool soundpool;
 	private static int soundId;
+	
+	
 
 	//private AdditionalQuestionDialog addBox;
 
@@ -256,6 +256,8 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 	public void onResume() {
 		super.onResume();
+		
+		
 		ClickLog.Log(ClickLogId.TEST_ENTER);
 		checkDebug(PreferenceControl.isDebugMode(),
 				PreferenceControl.debugType());
@@ -311,7 +313,7 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 		helpButton.setOnTouchListener(new ScaleOnTouchListener());
 
-		msgBox = new TestQuestionDialog(testFragment, testFragment, main_layout);
+		//msgBox = new TestQuestionDialog(testFragment, testFragment, main_layout);
 		/*feedbackBox = new FeedbackDialog(testFragment, main_layout);
 
 		notificationDialog = new NotificationDialog(testFragment.getActivity(),
@@ -381,45 +383,6 @@ public class TestFragment extends Fragment implements GPSInterface,
 			INIT_PROGRESS[i] = DONE_PROGRESS[i] = false;
 	}
 
-	// GPSInterface
-	@Override
-	public void runGPS() {
-		if (gps_state) {
-			gpsInitTask.cancel(true);
-			Log.d(TAG, "GPS: start the service");
-			Intent gpsIntent = new Intent(activity, GPSService.class);
-			Bundle data = new Bundle();
-			data.putString("directory", String.valueOf(timestamp));
-			gpsIntent.putExtras(data);
-			activity.startService(gpsIntent);
-			PreferenceControl.setGPSTime(System.currentTimeMillis(), timestamp);
-			updateDoneState(_GPS);
-		} else {
-			PreferenceControl.resetGPSTime();
-			updateDoneState(_GPS);
-		}
-	}
-
-	@Override
-	public void callGPSActivity() {
-		Intent gpsIntent = new Intent(
-				android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		startActivityForResult(gpsIntent, 0x10);
-	}
-
-	@Override
-	public void initializeGPS(boolean enable) {
-		msgBox.showWaiting();
-		if (enable) {
-			gps_state = true;
-			Object[] gps_enable = { gps_state };
-			gpsInitTask = new GPSInitTask(testFragment, locationManager);
-			gpsInitTask.execute(gps_enable);
-		} else {
-			gps_state = false;
-			runGPS();
-		}
-	}
 
 	// TestQuestionBox
 	public void writeQuestionFile(int emotion, int craving) {
@@ -614,8 +577,6 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 		if (bt != null)
 			bt = null;
-		if (gpsInitTask != null)
-			gpsInitTask.cancel(true);
 		if (btInitHandler != null)
 			btInitHandler.removeMessages(0);
 		if (cameraInitHandler != null)
@@ -638,8 +599,6 @@ public class TestFragment extends Fragment implements GPSInterface,
 
 		if (bt != null)
 			bt.closeSuccess();
-		if (gpsInitTask != null)
-			gpsInitTask.cancel(true);
 		if (btInitHandler != null)
 			btInitHandler.removeMessages(0);
 		if (cameraInitHandler != null)
@@ -682,7 +641,7 @@ public class TestFragment extends Fragment implements GPSInterface,
 				//feedbackBox.initialize();
 				//feedbackBox.show(true);
 			} else {
-				msgBox.initialize();
+				//msgBox.initialize();
 				//msgBox.show();
 				showTrigger();
 			}
@@ -693,8 +652,8 @@ public class TestFragment extends Fragment implements GPSInterface,
 	@Override
 	public void feedbackToTestQuestionDialog() {
 		//feedbackBox.close();
-		msgBox.initialize();
-		msgBox.show();
+		//msgBox.initialize();
+		//msgBox.show();
 		showTrigger();
 	}
 
@@ -958,9 +917,6 @@ public class TestFragment extends Fragment implements GPSInterface,
 		
 		//Log.i("abc", "YESSSSS");
 		
-		if (requestCode == 0x10) {
-			runGPS();
-		}
 
 	}
 	

@@ -436,6 +436,8 @@
         <item>慶祝</item>
         <item>助性</item>
     </string-array>
+    <string name="coping_skill">建議</string>
+    <string name="suggestion1">請試著想像自己躺在海上漂浮著</string>
     
     
     <string name="hint_note_detail">簡述記事內容</string>
