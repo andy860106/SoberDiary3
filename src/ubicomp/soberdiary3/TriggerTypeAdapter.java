@@ -4,6 +4,9 @@ package ubicomp.soberdiary3;
 import java.util.ArrayList;
 
 import ubicomp.soberdiary3.main.App;
+import ubicomp.soberdiary3.statistic.ui.block.StatisticPageView;
+import ubicomp.soberdiary3.statistic.ui.block.TriggerTypeView;
+import ubicomp.soberdiary3.statistic.ui.block.TriggerTypeView2;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,13 +21,23 @@ public class TriggerTypeAdapter extends PagerAdapter {
 	private LayoutInflater inflater;
 	private Context context;
 	
+	private StatisticPageView[] statisticViews;
+	
 	public TriggerTypeAdapter() {
+		
+		viewsList = new ArrayList<View>();	
+		statisticViews = new StatisticPageView[2];					
+		statisticViews[0] = new TriggerTypeView();
+		statisticViews[1] = new TriggerTypeView2();
+		
+		/*
 		this.context = App.getContext();
 		inflater = LayoutInflater.from(context);
 		view1 = inflater.inflate(R.layout.trigger_typeself, null);
 		view2 = inflater.inflate(R.layout.trigger_typeother, null);
-
-
+		*/
+		viewsList.add(statisticViews[0].getView());
+		viewsList.add(statisticViews[1].getView());
 	}
 	@Override
 	public int getCount() {
@@ -35,7 +48,7 @@ public class TriggerTypeAdapter extends PagerAdapter {
 	public Object instantiateItem(View collection, int position) {
 
 		((ViewPager) collection).addView(viewsList.get(position), 0);
-
+		
 		return viewsList.get(position);
 	}
 
@@ -50,15 +63,18 @@ public class TriggerTypeAdapter extends PagerAdapter {
 	}
 
 	public void load() {
-
+		for (int i = 0; i < statisticViews.length; ++i)
+			statisticViews[i].load();
 	}
 
 	public void onCancel() {
-
+		for (int i = 0; i < statisticViews.length; ++i)
+			statisticViews[i].onCancel();
 	}
 
 	public void clear() {
-
+		for (int i = 0; i < statisticViews.length; ++i)
+			statisticViews[i].clear();
 	}
 
 }

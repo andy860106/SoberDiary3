@@ -168,6 +168,11 @@
             android:label="@string/title_activity_list_test" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_list_test" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        </activity>
     </application>
 
 </manifest>

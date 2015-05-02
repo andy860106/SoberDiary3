@@ -11,7 +11,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <ListView
-        android:id="@id/android:list"
+        android:id="@+id/listView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </ListView>

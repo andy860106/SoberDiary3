@@ -2,19 +2,14 @@ package ubicomp.soberdiary3;
 
 import java.util.List;
 
-import ubicomp.soberdiary3.main.ui.toast.CustomToast;
 import ubicomp.soberdiary3.test.ui.TestQuestionDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -22,7 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TiggerActivity2 extends Activity {
 	
@@ -40,11 +34,11 @@ public class TiggerActivity2 extends Activity {
 	
 	private ArrayAdapter adapter_smile, adapter_notgood, adapter_cry, adapter_try, adapter_urge;
 	
-	private ViewPager viewPager;
+	private ViewPager statisticView;
 	//private StatisticPagerAdapter typeViewAdapter;
 	//private TriggerTypeAdapter typeViewAdapter;
 	private LayoutInflater inflater;
-	private MyViewPagerAdapter typeViewAdapter;
+	private TriggerTypeAdapter statisticViewAdapter;
 	private View view1, view2;
 	private List<View> views;
 	
@@ -59,31 +53,37 @@ public class TiggerActivity2 extends Activity {
 		
 		confirm_button =(Button)findViewById(R.id.note_confirm);
 		cancel_button =(Button)findViewById(R.id.note_cancel);
-		
-		
-		
-
 	
 		items = (Spinner)findViewById(R.id.note_items);
 		
-		viewPager = (ViewPager)findViewById(R.id.type_page);
-		
-		
+		statisticView = (ViewPager)findViewById(R.id.type_page);
+			
 		
 		confirm_button.setOnClickListener(new confirmOnClickListener());
 		cancel_button.setOnClickListener(new confirmOnClickListener());
 		//
+	
+		
+		//viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+		statisticViewAdapter = new TriggerTypeAdapter();
+		statisticView.setAdapter(statisticViewAdapter);
+		//viewPager.setOnPageChangeListener(new StatisticOnPageChangeListener());
+		statisticView.setSelected(true);
+		statisticViewAdapter.load();
+		statisticView.setCurrentItem(0);
 		
 		/*
-		inflater = LayoutInflater.from(activity);
-		view1 = inflater.inflate(R.layout.trigger_typeself, null);
-		view2 = inflater.inflate(R.layout.trigger_typeother, null);
+		note_smile =(ImageView)findViewById(R.id.note_smile);
+		note_notgood =(ImageView)findViewById(R.id.note_notgood);
+		note_cry =(ImageView)findViewById(R.id.note_cry);
+		note_try =(ImageView)findViewById(R.id.note_try);
+		note_urge=(ImageView)findViewById(R.id.note_urge);
+		note_smile.setOnClickListener(new smileOnClickListener());
+		note_notgood.setOnClickListener(new notgoodOnClickListener());
+		note_cry.setOnClickListener(new cryOnClickListener());
+		note_try.setOnClickListener(new tryOnClickListener());
+		note_urge.setOnClickListener(new urgeOnClickListener());*/
 		
-		views.add(view1);
-		views.add(view2);
-		viewPager.setAdapter(new MyViewPagerAdapter(views));
-		viewPager.setCurrentItem(0);*/
-		//viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 		
 		
 		/*
@@ -130,37 +130,104 @@ public class TiggerActivity2 extends Activity {
 		
 		
 	}
-	public class MyViewPagerAdapter extends PagerAdapter{
-		private List<View> mListViews;
-		
-		public MyViewPagerAdapter(List<View> mListViews) {
-			this.mListViews = mListViews;
-		}
+	private class smileOnClickListener implements Button.OnClickListener {
 
 		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) 	{	
-			container.removeView(mListViews.get(position));
-		}
-
-
-		@Override
-		public Object instantiateItem(ViewGroup container, int position) {			
-			 container.addView(mListViews.get(position), 0);
-			 return mListViews.get(position);
-		}
-
-		@Override
-		public int getCount() {			
-			return  mListViews.size();
-		}
-		
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {			
-			return arg0==arg1;
+		public void onClick(View v) {
+			note_smile.setBackgroundColor(Color.WHITE);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
+			items.setAdapter(adapter_smile);
+	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
+	        items.setVisibility(View.VISIBLE);  
+	        items.performClick();
+			//ialog.show();
+			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
 		}
 	}
 	
+	private class notgoodOnClickListener implements Button.OnClickListener {
 
+		@Override
+		public void onClick(View v) {
+			
+			
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.WHITE);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
+			items.setAdapter(adapter_notgood);
+	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
+	        items.setVisibility(View.VISIBLE);  
+	        items.performClick();
+			//ialog.show();
+			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
+		}
+	}
+	
+	private class cryOnClickListener implements Button.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.WHITE);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
+			items.setAdapter(adapter_cry);
+	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
+	        items.setVisibility(View.VISIBLE);  
+	        items.performClick();
+			//ialog.show();
+			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
+		}
+	}
+	
+	private class tryOnClickListener implements Button.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.WHITE);
+			note_urge.setBackgroundColor(Color.DKGRAY);
+			
+			items.setAdapter(adapter_try);
+	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
+	        items.setVisibility(View.VISIBLE);  
+	        items.performClick();
+			//ialog.show();
+			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
+		}
+	}
+	
+	private class urgeOnClickListener implements Button.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			
+			note_smile.setBackgroundColor(Color.DKGRAY);
+			note_notgood.setBackgroundColor(Color.DKGRAY);
+			note_cry.setBackgroundColor(Color.DKGRAY);
+			note_try.setBackgroundColor(Color.DKGRAY);
+			note_urge.setBackgroundColor(Color.WHITE);
+			
+			items.setAdapter(adapter_urge);
+	        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
+	        items.setVisibility(View.VISIBLE);  
+	        items.performClick();
+			//ialog.show();
+			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
+		}
+	}
 	
 	
 	

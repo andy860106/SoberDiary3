@@ -235,8 +235,6 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	protected void onDestroy() {
-		//GCMUtilities.onDestroy(getApplicationContext());
-		//GCMNotificationControl.generate(App.getContext());
 		super.onDestroy();
 	}
 
@@ -562,17 +560,14 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	private class LoadingPageTimer extends CountDownTimer {
-
 		public LoadingPageTimer() {
 			super(3000, 3000);
 		}
-
 		@Override
 		public void onFinish() {
 			loading_page.setVisibility(View.INVISIBLE);
 			enableTabAndClick(true);
 		}
-
 		@Override
 		public void onTick(long millisUntilFinished) {
 		}

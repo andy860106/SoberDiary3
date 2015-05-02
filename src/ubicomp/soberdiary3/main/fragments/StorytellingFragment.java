@@ -2,32 +2,23 @@ package ubicomp.soberdiary3.main.fragments;
 
 import ubicomp.soberdiary3.R;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-public class StorytellingFragment extends ListFragment {
+public class StorytellingFragment extends Fragment {
 
 	private View view;
-	//private ListView listView;
+	private ListView listView;
+	private TextView textview;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//listView = getListView();
-		 String[] arr = new String[]{
-	             "A","B","C","D","E","F","G"
-	     };
-	     ArrayAdapter<String> adapter = 
-	            new ArrayAdapter<String>(getActivity(),
-	                android.R.layout.simple_list_item_2,arr);
-	     setListAdapter(adapter);
-	        
-
 
 	}
 
@@ -37,6 +28,16 @@ public class StorytellingFragment extends ListFragment {
 		
 		view = inflater.inflate(R.layout.fragment_3, container,
 				false);	
+		textview = (TextView)view.findViewById(R.id.chooseResult);
+		listView = (ListView)view.findViewById(R.id.listView2);
+		 String[] arr = new String[]{
+	             "A","B","C","D","E","F","G"
+	     };
+	     ArrayAdapter<String> adapter = 
+	            new ArrayAdapter<String>(getActivity(),
+	                android.R.layout.simple_list_item_1,arr);
+	     listView.setAdapter(adapter);
+	        
 
 		return view;
 	}
