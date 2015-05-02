@@ -102,7 +102,6 @@ public class TestFragment extends Fragment implements
 	private static final int COUNT_DOWN_SECOND_DEVELOP = Config.COUNT_DOWN_SECOND_DEBUG;
 
 	// GPS
-	private LocationManager locationManager;
 	private boolean gps_state = false;
 
 	// Bluetooth
@@ -125,7 +124,7 @@ public class TestFragment extends Fragment implements
 	private BracDataHandler BDH;
 
 	private RelativeLayout main_layout;
-	private TestQuestionDialog msgBox;
+	//private TestQuestionDialog msgBox;
 	private QuestionnaireDialog msgBox2;
 	//private FeedbackDialog feedbackBox;
 
@@ -226,10 +225,7 @@ public class TestFragment extends Fragment implements
 	}
 
 	public void onDestory() {
-		if (msgBox != null) {
-			msgBox.clear();
-			msgBox = null;
-		}
+
 		/*if (feedbackBox != null) {
 			feedbackBox.clear();
 			feedbackBox = null;
@@ -319,6 +315,9 @@ public class TestFragment extends Fragment implements
 		notificationDialog = new NotificationDialog(testFragment.getActivity(),
 				main_layout, testFragment, testFragment);*/
 		
+		
+		
+		//暫時沒用到
 		dialog = new AlertDialog.Builder(MainActivity.getMainActivity());
         dialog.setTitle("應對建議");
         dialog.setMessage("請試著想像自己躺在海上漂浮著");
@@ -359,8 +358,6 @@ public class TestFragment extends Fragment implements
 			PreferenceControl.setUpdateDetectionTimestamp(0);
 
 		setStorage();
-		locationManager = (LocationManager) activity
-				.getSystemService(Context.LOCATION_SERVICE);
 		cameraRecorder = new CameraRecorder(testFragment, imgFileHandler);
 
 		cameraRunHandler = new CameraRunHandler(cameraRecorder);
@@ -785,8 +782,6 @@ public class TestFragment extends Fragment implements
 	@SuppressLint("HandlerLeak")
 	private class ChangeTabsHandler extends Handler {
 		public void handleMessage(Message msg) {
-			if (msgBox != null)
-				msgBox.close();
 			MainActivity.getMainActivity().enableTabAndClick(true);
 			MainActivity.getMainActivity().changeTab(1);
 		}
@@ -909,9 +904,10 @@ public class TestFragment extends Fragment implements
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		//MainActivity.getMainActivity().enableTabAndClick(true);
-		MainActivity.getMainActivity().changeTab(1); 
-		dialog.show();
+		
+		MainActivity.getMainActivity().enableTabAndClick(true);
+		MainActivity.getMainActivity().changeTab(1, MainActivity.ACTION_QUESTIONNAIRE); 
+		//dialog.show();
 		
 		
 		

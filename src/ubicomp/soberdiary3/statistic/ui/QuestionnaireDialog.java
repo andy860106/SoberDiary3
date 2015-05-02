@@ -7,6 +7,7 @@ import ubicomp.soberdiary3.data.database.DatabaseControl;
 import ubicomp.soberdiary3.data.structure.Questionnaire;
 import ubicomp.soberdiary3.main.ui.Typefaces;
 import ubicomp.soberdiary3.main.ui.toast.CustomToast;
+import ubicomp.soberdiary3.statistic.ui.questionnaire.content.CopingSkillContent;
 import ubicomp.soberdiary3.statistic.ui.questionnaire.content.QuestionnaireContent;
 import ubicomp.soberdiary3.statistic.ui.questionnaire.content.Type0Content;
 import ubicomp.soberdiary3.statistic.ui.questionnaire.content.Type1Content;
@@ -165,6 +166,13 @@ public class QuestionnaireDialog {
 		quesDialogCaller.enablePage(false);
 		boxLayout.setVisibility(View.VISIBLE);
 		return;
+	}
+	public void generateCopingDialog() {
+		showCloseButton(true);
+		setNextButton("", null);
+		contentSequence.clear();
+		contentSequence.add(new CopingSkillContent(this));
+		contentSequence.get(contentSequence.size() - 1).onPush();
 	}
 
 	/** close the dialog */

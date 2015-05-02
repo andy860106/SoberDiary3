@@ -97,12 +97,14 @@ public class StatisticFragment extends Fragment implements QuestionnaireDialogCa
 				return false;
 			}
 		});
+		
 		return view;
 	}
 
 	public void onResume() {
 		super.onResume();
-
+		
+		
 		ClickLog.Log(ClickLogId.STATISTIC_ENTER);
 		enablePage(true);
 		statisticFragment = this;
@@ -117,6 +119,8 @@ public class StatisticFragment extends Fragment implements QuestionnaireDialogCa
 				notify_action = action;
 			}
 		}
+		
+		//msgBox.generateCopingDialog();
 
 		loadHandler.sendEmptyMessage(0);
 	}
@@ -125,7 +129,6 @@ public class StatisticFragment extends Fragment implements QuestionnaireDialogCa
 		if (loadHandler != null)
 			loadHandler.removeMessages(0);
 		clear();
-		ClickLog.Log(ClickLogId.STATISTIC_LEAVE);
 		super.onPause();
 	}
 
@@ -203,9 +206,11 @@ public class StatisticFragment extends Fragment implements QuestionnaireDialogCa
 			LoadingDialogControl.dismiss();
 
 			if (notify_action == MainActivity.ACTION_QUESTIONNAIRE) {
-				openQuestionnaire();
+				//openQuestionnaire();
+				msgBox.generateCopingDialog();
 				notify_action = 0;
 			}
+			
 		}
 	}
 

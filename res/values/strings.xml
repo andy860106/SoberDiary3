@@ -439,6 +439,9 @@
     <string name="coping_skill">建議</string>
     <string name="suggestion1">請試著想像自己躺在海上漂浮著</string>
     
+    <string-array name="item_select">
+        <item>請點選類別以選擇</item>
+    </string-array>
     
     <string name="hint_note_detail">簡述記事內容</string>
     <string name="title_activity_list_test">ListTestActivity</string>

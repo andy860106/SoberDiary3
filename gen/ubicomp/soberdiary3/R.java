@@ -32,6 +32,7 @@ public final class R {
         public static final int emotion_manage_related=0x7f080002;
         public static final int emotion_state=0x7f080022;
         public static final int fb_selection=0x7f080003;
+        public static final int item_select=0x7f080041;
         public static final int note_conflict=0x7f08003e;
         public static final int note_date=0x7f080037;
         public static final int note_detail=0x7f080036;
@@ -85,7 +86,7 @@ public final class R {
         public static final int radar_3_1=0x7f080030;
         public static final int radar_3_2=0x7f080031;
         public static final int setting_time_gap=0x7f080027;
-        public static final int test_guide_msg=0x7f080041;
+        public static final int test_guide_msg=0x7f080042;
         public static final int trigger_list=0x7f080035;
         public static final int tutorial_step=0x7f080024;
     }
