@@ -2,7 +2,7 @@ package ubicomp.soberdiary3.main.ui;
 
 import ubicomp.soberdiary3.R;
 import ubicomp.soberdiary3.main.AboutActivity;
-import ubicomp.soberdiary3.main.SettingActivity;
+import ubicomp.soberdiary3.main.CopingActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -58,7 +58,7 @@ public class CustomMenu extends PopupWindow {
 				intent = new Intent(context, AboutActivity.class);
 				break;
 			case R.id.menu_setting:
-				intent = new Intent(context, SettingActivity.class);
+				intent = new Intent(context, CopingActivity.class);
 				break;
 			default:
 				intent = null;

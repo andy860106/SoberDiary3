@@ -8,21 +8,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center"
+        android:background="#FFFFFF" >
 
-        <Button
+        <TextView
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自己" />
 
-        <Button
+        <TextView
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="他人" />
 
-        <Button
+        <TextView
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

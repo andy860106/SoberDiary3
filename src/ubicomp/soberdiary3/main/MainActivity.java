@@ -485,7 +485,7 @@ public class MainActivity extends FragmentActivity {
 			startActivity(newIntent);
 			return true;
 		case R.id.menu_setting:
-			newIntent = new Intent(this, SettingActivity.class);
+			newIntent = new Intent(this, CopingActivity.class);
 			startActivity(newIntent);
 			return true;
 		default:

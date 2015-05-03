@@ -437,7 +437,18 @@
         <item>助性</item>
     </string-array>
     <string name="coping_skill">建議</string>
+    <string name="trigger_page">新增記事</string>
     <string name="suggestion1">請試著想像自己躺在海上漂浮著</string>
+    <string name="item_select">請選擇項目</string>
+    
+    <string name="note_negative">負面情緒</string>
+    <string name="note_notgood">身體不舒服</string>
+    <string name="note_positive">正面情緒</string>
+    <string name="note_selftest">自我測試</string>
+    <string name="note_temptation">渴癮及誘惑</string>
+    <string name="note_conflict">與他人衝突</string>
+    <string name="note_social">社交壓力</string>
+    <string name="note_play">與他人玩樂</string>
     
     <string-array name="item_select">
         <item>請點選類別以選擇</item>

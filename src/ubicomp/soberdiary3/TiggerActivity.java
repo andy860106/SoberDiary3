@@ -3,7 +3,6 @@ package ubicomp.soberdiary3;
 import java.io.File;
 import java.util.List;
 
-import ubicomp.soberdiary3.data.file.MainStorage;
 import ubicomp.soberdiary3.main.ui.toast.CustomToast;
 import ubicomp.soberdiary3.main.ui.toast.CustomToastSmall;
 import ubicomp.soberdiary3.test.data.BracValueDebugHandler;
@@ -21,6 +20,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -37,12 +37,6 @@ public class TiggerActivity extends Activity {
 	private ImageView note_smile, note_notgood, note_cry, note_try, note_urge;
 	private Spinner items;
 	
-	// File
-	private File mainDirectory;
-	private BracValueFileHandler bracFileHandler;
-	private ImageFileHandler imgFileHandler;
-	private BracValueDebugHandler bracDebugHandler;
-
 	
 	
 	private Activity activity;
@@ -94,6 +88,12 @@ public class TiggerActivity extends Activity {
 		note_cry.setOnClickListener(new MyOnClickListener());
 		note_try.setOnClickListener(new MyOnClickListener());
 		note_urge.setOnClickListener(new MyOnClickListener());
+		
+		note_smile.setOnLongClickListener(new MyOnLongClickListener());
+		note_notgood.setOnLongClickListener(new MyOnLongClickListener());
+		note_cry.setOnLongClickListener(new MyOnLongClickListener());
+		note_try.setOnLongClickListener(new MyOnLongClickListener());
+		note_urge.setOnLongClickListener(new MyOnLongClickListener());
 	
 		items = (Spinner)findViewById(R.id.note_items);
 		
@@ -105,7 +105,7 @@ public class TiggerActivity extends Activity {
 		cancel_button.setOnClickListener(new CancelOnClickListener());
 		//
 
-		dialog = new AlertDialog.Builder(this);
+		/*dialog = new AlertDialog.Builder(this);
         dialog.setTitle("應對建議");
         dialog.setMessage("請試著想像自己躺在海上漂浮著");
         //dialog.setIcon(android.R.drawable.ic_dialog_alert);
@@ -126,7 +126,14 @@ public class TiggerActivity extends Activity {
         		setResult(RESULT_OK);
                 finish();
         	}
-        });
+        });*/
+		
+		dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("說明");
+        dialog.setMessage("這是說明測試");
+        //dialog.setIcon(android.R.drawable.ic_dialog_alert);
+        dialog.setCancelable(true);  
+        
         
         
         enableSend(false);
@@ -198,6 +205,12 @@ public class TiggerActivity extends Activity {
               
         }  
 	}
+	class MyOnLongClickListener implements OnLongClickListener{
+	    public boolean onLongClick(View v){
+	    	dialog.show();
+	    	return true;
+	    }
+	}
 	
 	
 	
@@ -215,6 +228,7 @@ public class TiggerActivity extends Activity {
 				note_urge.setBackgroundColor(Color.DKGRAY);
 				
 				items.setAdapter(adapter_smile);
+				items.setPrompt("正面情緒");
 		        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 		        items.setVisibility(View.VISIBLE);  
 		        items.performClick();
@@ -227,6 +241,7 @@ public class TiggerActivity extends Activity {
 				note_urge.setBackgroundColor(Color.DKGRAY);
 				
 				items.setAdapter(adapter_notgood);
+				items.setPrompt("身體不舒服");
 		        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 		        items.setVisibility(View.VISIBLE);  
 		        items.performClick();
@@ -239,6 +254,7 @@ public class TiggerActivity extends Activity {
 				note_urge.setBackgroundColor(Color.DKGRAY);
 				
 				items.setAdapter(adapter_cry);
+				items.setPrompt("負面情緒");
 		        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 		        items.setVisibility(View.VISIBLE);  
 		        items.performClick();
@@ -251,6 +267,7 @@ public class TiggerActivity extends Activity {
 				note_urge.setBackgroundColor(Color.DKGRAY);
 				
 				items.setAdapter(adapter_try);
+				items.setPrompt("自我測驗");
 		        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 		        items.setVisibility(View.VISIBLE);  
 		        items.performClick();
@@ -263,6 +280,7 @@ public class TiggerActivity extends Activity {
 				note_urge.setBackgroundColor(Color.WHITE);
 				
 				items.setAdapter(adapter_urge);
+				items.setPrompt("誘惑和衝動");
 		        items.setOnItemSelectedListener(new SpinnerXMLSelectedListener());
 		        items.setVisibility(View.VISIBLE);  
 		        items.performClick();

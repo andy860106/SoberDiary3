@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 import ubicomp.soberdiary3.R;
-import ubicomp.soberdiary3.TiggerActivity;
+import ubicomp.soberdiary3.TestActivity2;
 import ubicomp.soberdiary3.data.file.MainStorage;
 import ubicomp.soberdiary3.main.App;
 import ubicomp.soberdiary3.main.MainActivity;
@@ -930,7 +930,7 @@ public class TestFragment extends Fragment implements
 
 	private void showTrigger() {
 		Intent intent = new Intent();
-		intent.setClass(activity, TiggerActivity.class);
+		intent.setClass(activity, TestActivity2.class);
 		startActivityForResult(intent, 2);
 	}
 	

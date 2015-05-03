@@ -5,6 +5,20 @@
     android:background="@color/black_gray"
     android:orientation="vertical"
     android:padding="20dp" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trigger_page"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,7 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:entries="@array/item_select" />
+            android:entries="@array/item_select"
+            android:prompt="@string/item_select" />
 
     </LinearLayout>
 

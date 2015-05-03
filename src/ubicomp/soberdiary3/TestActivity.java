@@ -35,8 +35,9 @@ public class TestActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.test);
-		initCursorPos();
+		setContentView(R.layout.activity_add_note2);
+		//setContentView(R.layout.test);
+		//initCursorPos();
 		initView();		
 	}
 	
@@ -45,10 +46,11 @@ public class TestActivity extends Activity {
 	//指向第一個頁面setCurrentItem(0),最後設置onclick和onPageChange監聽器
 	public void initView()
 	{
-		mPager = (ViewPager) findViewById(R.id.vPager);
-		t1 = (TextView) findViewById(R.id.text1);
-		t2 = (TextView) findViewById(R.id.text2);
-		t3 = (TextView) findViewById(R.id.text3);	
+		//mPager = (ViewPager) findViewById(R.id.vPager);
+		mPager = (ViewPager) findViewById(R.id.type_page);
+		//t1 = (TextView) findViewById(R.id.text1);
+		//t2 = (TextView) findViewById(R.id.text2);
+		//t3 = (TextView) findViewById(R.id.text3);	
 		
 		listViews = new ArrayList<View>();
 		LayoutInflater mInflater = getLayoutInflater();
@@ -59,10 +61,10 @@ public class TestActivity extends Activity {
 		mPager.setCurrentItem(0);
 		
 		
-		t1.setOnClickListener(new MyClickListener(0));
-		t2.setOnClickListener(new MyClickListener(1));
-		t3.setOnClickListener(new MyClickListener(2));
-		mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+		//t1.setOnClickListener(new MyClickListener(0));
+		//t2.setOnClickListener(new MyClickListener(1));
+		//t3.setOnClickListener(new MyClickListener(2));
+		//mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 	
 	//初始化指示器的位置,就是下面那個移動條一開始放的地方
