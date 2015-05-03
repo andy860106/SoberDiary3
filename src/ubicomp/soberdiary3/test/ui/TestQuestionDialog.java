@@ -322,6 +322,31 @@ public class TestQuestionDialog {
 		if (boxLayout != null)
 			boxLayout.setVisibility(View.INVISIBLE);
 	}
+	
+	private class EmotionListener implements SeekBar.OnSeekBarChangeListener {
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			if (emotionShow == null || emotionResIds == null)
+				return;
+			emotionShow.setImageResource(emotionResIds[progress]);
+			emotionShowText.setText(emotionStr[progress]);
+			for (int i = 0; i < eNum.length; ++i)
+				eNum[i].setVisibility(View.INVISIBLE);
+			eNum[progress].setVisibility(View.VISIBLE);
+			enableSend(true);
+			seekBar.invalidate();
+		}
+
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+		}
+
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+		}
+
+	}
 
 	private class CravingListener implements SeekBar.OnSeekBarChangeListener {
 		@Override

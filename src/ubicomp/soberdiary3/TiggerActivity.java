@@ -1,20 +1,26 @@
 package ubicomp.soberdiary3;
 
+import java.io.File;
 import java.util.List;
 
+import ubicomp.soberdiary3.data.file.MainStorage;
 import ubicomp.soberdiary3.main.ui.toast.CustomToast;
+import ubicomp.soberdiary3.main.ui.toast.CustomToastSmall;
+import ubicomp.soberdiary3.test.data.BracValueDebugHandler;
+import ubicomp.soberdiary3.test.data.BracValueFileHandler;
+import ubicomp.soberdiary3.test.data.ImageFileHandler;
+import ubicomp.soberdiary3.test.data.QuestionFile;
+import ubicomp.soberdiary3.test.ui.TestQuestionCaller;
 import ubicomp.soberdiary3.test.ui.TestQuestionDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -31,6 +37,13 @@ public class TiggerActivity extends Activity {
 	private ImageView note_smile, note_notgood, note_cry, note_try, note_urge;
 	private Spinner items;
 	
+	// File
+	private File mainDirectory;
+	private BracValueFileHandler bracFileHandler;
+	private ImageFileHandler imgFileHandler;
+	private BracValueDebugHandler bracDebugHandler;
+
+	
 	
 	private Activity activity;
 	
@@ -46,6 +59,12 @@ public class TiggerActivity extends Activity {
 	private LayoutInflater inflater;
 	private View view1, view2;
 	private List<View> views;
+	private boolean done, doneByDoubleClick;
+	private TestQuestionCaller testQuestionCaller;
+	private QuestionFile questionFile;
+	
+	//private String[] choose;
+	//private Resources res;
 	
 	
 
@@ -82,8 +101,8 @@ public class TiggerActivity extends Activity {
 		
 		
 		
-		confirm_button.setOnClickListener(new confirmOnClickListener());
-		cancel_button.setOnClickListener(new confirmOnClickListener());
+		confirm_button.setOnClickListener(new EndOnClickListener());
+		cancel_button.setOnClickListener(new CancelOnClickListener());
 		//
 
 		dialog = new AlertDialog.Builder(this);
@@ -109,6 +128,9 @@ public class TiggerActivity extends Activity {
         	}
         });
         
+        
+        enableSend(false);
+        
         adapter_smile = ArrayAdapter.createFromResource(this, R.array.note_positive, android.R.layout.simple_spinner_item);
         adapter_smile.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
@@ -126,7 +148,8 @@ public class TiggerActivity extends Activity {
         //adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, R.array.note_conflict);
         //adapter.setNotifyOnChange(true);
         
-        
+        //res = getResources();
+        //choose = res.getStringArray(R.array.note_positive);
 		//msgBox = new TestQuestionDialog(this, this, main_layout);
 		/*
 		chooseResult = (TextView) findViewById(R.id.trigger_result);
@@ -141,11 +164,33 @@ public class TiggerActivity extends Activity {
 		
 		
 	}
+	
+	public void writeQuestionFile(int emotion, int craving) {
+		questionFile.write(emotion, craving);
+	}
+	
+	/*private void setStorage() {
+		File dir = MainStorage.getMainStorageDirectory();
+
+		mainDirectory = new File(dir, String.valueOf(timestamp));
+		if (!mainDirectory.exists())
+			if (!mainDirectory.mkdirs()) {
+				return;
+			}
+
+		bracFileHandler = new BracValueFileHandler(mainDirectory,
+				String.valueOf(timestamp));
+		bracDebugHandler = new BracValueDebugHandler(mainDirectory,
+				String.valueOf(timestamp));
+		imgFileHandler = new ImageFileHandler(mainDirectory,
+				String.valueOf(timestamp));
+		questionFile = new QuestionFile(mainDirectory);
+	}*/
 		
 	private class SpinnerXMLSelectedListener implements OnItemSelectedListener{
 		@Override
-		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
-                long arg3) {  
+		public void onItemSelected(AdapterView<?> arg0, View view, int arg2, long arg3) {  
+			//Toast.makeText(this, "你選的是"+choose[arg2], Toast.LENGTH_SHORT).show();
             //view2.setText("你使用什么样的手机："+adapter2.getItem(arg2));  
         }  
   
@@ -154,30 +199,13 @@ public class TiggerActivity extends Activity {
         }  
 	}
 	
-
-	private class confirmOnClickListener implements Button.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			
-			setResult(RESULT_OK);
-            finish();
-			//dialog.show();
-			//final AlertDialog alertDialog = getAlertDialog("這是一個對話框","請選擇......");
-		}
-	}
 	
-	private class cancelOnClickListener implements Button.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			setResult(RESULT_OK);
-            finish();
-		}
-	}
 	
 	class MyOnClickListener implements OnClickListener{
 	    public void onClick(View v){
+	    	
+	    	enableSend(true, true);
+	    	
 	        switch(v.getId()){
 	        case R.id.note_smile:
 				note_smile.setBackgroundColor(Color.WHITE);
@@ -244,35 +272,65 @@ public class TiggerActivity extends Activity {
 	}
 
 	
+	private void enableSend(boolean enable) {
+		if (enable) {
+			//send.setTextColor(highlight_color);
+			//notSend.setTextColor(highlight_color);
+		} else {
+			//send.setTextColor(text_color);
+			//notSend.setTextColor(text_color);
+		}
+		done = enable;
+		doneByDoubleClick = false;
+	}
+
+	private void enableSend(boolean enable, boolean click) {
+		if (enable) {
+			//send.setTextColor(highlight_color);
+			//notSend.setTextColor(highlight_color);
+		} else {
+			//send.setTextColor(text_color);
+			//notSend.setTextColor(text_color);
+		}
+		done = enable;
+		doneByDoubleClick = click;
+	}
+
+
+	private class EndOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			if (!done) {
+				CustomToastSmall.generateToast(R.string.msg_box_toast_send);
+				enableSend(true, true);
+				return;
+			}
+			//testQuestionCaller.writeQuestionFile(1, 1);
+			//testQuestionCaller.writeQuestionFile(emotion, craving);
+			setResult(RESULT_OK);
+            finish();
+		}
+	}
+
+	private class CancelOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+
+			if (!done) {
+				CustomToastSmall.generateToast(R.string.msg_box_toast_cancel);
+				enableSend(true);
+				return;
+			}
+			//boxLayout.setVisibility(View.INVISIBLE);
+			//testQuestionCaller.writeQuestionFile(emotion, craving);
+			setResult(RESULT_OK);
+            finish();
+		}
+	}
 	
 	
-	
-    /*private AlertDialog getAlertDialog(String title,String message){
-        //產生一個Builder物件
-        Builder builder = new AlertDialog.Builder(TiggerActivity.this);
-        //設定Dialog的標題
-        builder.setTitle(title);
-        //設定Dialog的內容
-        builder.setMessage(message);
-        //設定Positive按鈕資料
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //按下按鈕時顯示快顯
-                Toast.makeText(TiggerActivity.this, "您按下OK按鈕", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //設定Negative按鈕資料
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //按下按鈕時顯示快顯
-                Toast.makeText(TiggerActivity.this, "您按下Cancel按鈕", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //利用Builder物件建立AlertDialog
-        return builder.create();
-    }*/
 	
 	/*
 	@Override

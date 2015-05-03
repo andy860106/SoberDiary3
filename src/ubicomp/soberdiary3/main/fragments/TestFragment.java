@@ -255,6 +255,7 @@ public class TestFragment extends Fragment implements
 		checkDebug(PreferenceControl.isDebugMode(),
 				PreferenceControl.debugType());
 		setState(STATE_INIT);
+		reset();// add by Andy
 		showCountDown = true;
 		LoadingDialogControl.dismiss();
 		/*if (PreferenceControl.showAdditionalQuestionnaire()) {
@@ -486,7 +487,7 @@ public class TestFragment extends Fragment implements
 			showCountDown = true;
 		}
 	}
-
+	
 	private void setStorage() {
 		File dir = MainStorage.getMainStorageDirectory();
 
@@ -548,7 +549,7 @@ public class TestFragment extends Fragment implements
 				msgLoadingHandler.sendEmptyMessage(0);
 			}
 		}
-		if (DONE_PROGRESS[_GPS] && DONE_PROGRESS[_BT] && DONE_PROGRESS[_CAMERA]) {
+		if (DONE_PROGRESS[_BT] && DONE_PROGRESS[_CAMERA]) {
 			if (PreferenceControl.isDebugMode()) {
 				if (PreferenceControl.debugType())
 					BDH = new BracDataHandlerAVMMode(timestamp);
@@ -561,7 +562,7 @@ public class TestFragment extends Fragment implements
 			if (!gps_state)
 				UploadService.startUploadService(this.activity);
 
-			changeTabsHandler.sendEmptyMessage(0);
+			//changeTabsHandler.sendEmptyMessage(0);
 		}
 	}
 
@@ -780,7 +781,7 @@ public class TestFragment extends Fragment implements
 	private class ChangeTabsHandler extends Handler {
 		public void handleMessage(Message msg) {
 			MainActivity.getMainActivity().enableTabAndClick(true);
-			MainActivity.getMainActivity().changeTab(1);
+			MainActivity.getMainActivity().changeTab(1, MainActivity.ACTION_QUESTIONNAIRE);
 		}
 	}
 
@@ -902,8 +903,10 @@ public class TestFragment extends Fragment implements
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		MainActivity.getMainActivity().enableTabAndClick(true);
-		MainActivity.getMainActivity().changeTab(1, MainActivity.ACTION_QUESTIONNAIRE); 
+		writeQuestionFile(1, 1);
+		changeTabsHandler.sendEmptyMessage(0);
+		//MainActivity.getMainActivity().enableTabAndClick(true);
+		//MainActivity.getMainActivity().changeTab(1, MainActivity.ACTION_QUESTIONNAIRE); 
 		//dialog.show();
 		
 		
@@ -932,7 +935,14 @@ public class TestFragment extends Fragment implements
 	}
 	
 
-	// Debug
+	
+	
+	
+	
+	
+	
+	
+	// DebugMode
 	// --------------------------------------------------------------------------------------------------------
 
 	private void checkDebug(boolean debug, boolean debug_type) {

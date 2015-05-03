@@ -106,8 +106,8 @@ public class StatisticDayView extends StatisticPageView {
 
 		brac = detection.getBrac();
 		brac_time = detection.getTv().getTimestamp();
-		e_idx = detection.getEmotion();
-		c_idx = detection.getCraving();
+		//e_idx = detection.getEmotion();
+		//c_idx = detection.getCraving();
 
 		circleImages = new ImageView[nBlocks];
 

@@ -29,7 +29,7 @@ public class MainStorage {
 						Environment.getExternalStorageDirectory(), "soberDiary3");
 			else
 				mainStorage = new File(App.getContext().getFilesDir(),
-						"soberDiary");
+						"soberDiary3");
 		}
 		if (!mainStorage.exists())
 			mainStorage.mkdirs();

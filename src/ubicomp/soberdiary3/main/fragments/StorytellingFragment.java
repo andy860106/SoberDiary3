@@ -1,6 +1,7 @@
 package ubicomp.soberdiary3.main.fragments;
 
 import ubicomp.soberdiary3.R;
+import ubicomp.soberdiary3.main.ui.LoadingDialogControl;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ public class StorytellingFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		LoadingDialogControl.dismiss();
 		//ClickLog.Log(ClickLogId.STORYTELLING_ENTER);
 		//getView().setFocusableInTouchMode(true);
 		//getView().requestFocus();
