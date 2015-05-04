@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="coping_page">應對技巧</string>
     <string name="coping_relaxed">放鬆技巧</string>
     <string name="coping_breath">閉眼專注觀察呼吸</string>
     <string name="coping_musle">閉眼讓肌肉放鬆</string>

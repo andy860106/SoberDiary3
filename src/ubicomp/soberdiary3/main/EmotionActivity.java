@@ -177,7 +177,7 @@ public class EmotionActivity extends Activity {
 	}
 
 	/** Set questions of emotion */
-	private void setEmotionQuestion() {
+	protected void setEmotionQuestion() { //modify by Andy
 		state = 0;
 
 		mainLayout.removeAllViews();

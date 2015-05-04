@@ -36,7 +36,7 @@ public class TiggerActivity extends Activity {
 	private Button confirm_button, cancel_button;
 	private ImageView note_smile, note_notgood, note_cry, note_try, note_urge;
 	private Spinner items;
-	
+	private ArrayAdapter adapter_smile, adapter_notgood, adapter_cry, adapter_try, adapter_urge;
 	
 	
 	private Activity activity;
@@ -45,7 +45,7 @@ public class TiggerActivity extends Activity {
 	
 	private AlertDialog.Builder dialog;
 	
-	private ArrayAdapter adapter_smile, adapter_notgood, adapter_cry, adapter_try, adapter_urge;
+	
 	
 	private ViewPager viewPager;
 	//private StatisticPagerAdapter typeViewAdapter;
@@ -170,10 +170,6 @@ public class TiggerActivity extends Activity {
 		//listview.setOnItemClickListener(listViewOnItemClick);
 		
 		
-	}
-	
-	public void writeQuestionFile(int emotion, int craving) {
-		questionFile.write(emotion, craving);
 	}
 	
 	/*private void setStorage() {

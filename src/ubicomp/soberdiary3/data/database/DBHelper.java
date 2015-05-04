@@ -27,13 +27,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL("CREATE TABLE Detection3 ("
+		// new Detection Table, rename as Testing
+		db.execSQL("CREATE TABLE Testing ("
 				+ " id INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ " brac FLOAT," + " year INTEGER NOT NULL,"
 				+ " month INTEGER NOT NULL," + " day INTEGER NOT NULL,"
 				+ " ts INTEGER NOT NULL," + " week INTEGER NOT NULL,"
-				+ " timeSlot INTEGER NOT NULL," + " trigger_type INTEGER,"
-				+ " trigger_items INTEGER," + " isPrime INTEGER NOT NULL, "
+				+ " timeSlot INTEGER NOT NULL," + " trigger INTEGER NOT NULL,"
+				+ " craving INTEGER NOT NULL," + " isPrime INTEGER NOT NULL, "
 				+ " weeklyScore INTEGER NOT NULL," + " score INTEGER NOT NULL,"
 				+ " upload INTEGER NOT NULL DEFAULT 0" + ")");
 		

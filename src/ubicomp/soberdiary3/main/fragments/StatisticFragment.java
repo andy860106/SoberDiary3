@@ -1,6 +1,7 @@
 package ubicomp.soberdiary3.main.fragments;
 
 import ubicomp.soberdiary3.R;
+import ubicomp.soberdiary3.main.CopingActivity;
 import ubicomp.soberdiary3.main.MainActivity;
 import ubicomp.soberdiary3.main.ui.LoadingDialogControl;
 import ubicomp.soberdiary3.main.ui.ScaleOnTouchListener;
@@ -13,6 +14,7 @@ import ubicomp.soberdiary3.system.config.PreferenceControl;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -234,8 +236,11 @@ public class StatisticFragment extends Fragment implements QuestionnaireDialogCa
 
 		@Override
 		public void onClick(View v) {
-			ClickLog.Log(ClickLogId.STATISTIC_QUESTION_BUTTON);
-			openQuestionnaire();
+			//ClickLog.Log(ClickLogId.STATISTIC_QUESTION_BUTTON);
+			//openQuestionnaire();
+			Intent intent = new Intent();
+			intent.setClass(activity, CopingActivity.class);
+			activity.startActivity(intent);
 		}
 	}
 

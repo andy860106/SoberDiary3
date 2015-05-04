@@ -29,7 +29,7 @@ import android.widget.TextView;
  * 
  * @author Andy Chen
  */
-public class CopingActivity extends Activity {
+public class CopingActivity extends EmotionActivity {
 
 	private LayoutInflater inflater;
 
@@ -66,7 +66,7 @@ public class CopingActivity extends Activity {
 
 		mainLayout.removeAllViews();
 
-		View title = BarButtonGenerator.createTitleView(R.string.setting_title);
+		View title = BarButtonGenerator.createTitleView(R.string.coping_page);
 		titleLayout.addView(title);
 
 		setting();
@@ -82,16 +82,29 @@ public class CopingActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						
-						ImageView list = (ImageView) v
-								.findViewById(R.id.question_list);
+						ImageView list = (ImageView) v.findViewById(R.id.question_list);
 						if (visible) {
-						
+							breathView.setVisibility(View.GONE);
+							musleView.setVisibility(View.GONE);
+							stretchView.setVisibility(View.GONE);
+							musicView.setVisibility(View.GONE);
+							meditationView.setVisibility(View.GONE);
+							
+							list.setVisibility(View.INVISIBLE);
 						} else {
-						
+							breathView.setVisibility(View.VISIBLE);
+							musleView.setVisibility(View.VISIBLE);
+							stretchView.setVisibility(View.VISIBLE);
+							musicView.setVisibility(View.VISIBLE);
+							meditationView.setVisibility(View.VISIBLE);
+							
+							list.setVisibility(View.VISIBLE);
 						}
 						visible = !visible;
 					}
 				});
+		mainLayout.addView(relaxedView);
+		
 		breathView= BarButtonGenerator.createSettingButtonView(
 				R.string.coping_breath, new OnClickListener() {
 
@@ -101,6 +114,9 @@ public class CopingActivity extends Activity {
 					}
 
 				});
+		breathView.setVisibility(View.GONE);
+		mainLayout.addView(breathView);
+		
 		musleView= BarButtonGenerator.createSettingButtonView(
 				R.string.coping_musle, new OnClickListener() {
 
@@ -110,6 +126,9 @@ public class CopingActivity extends Activity {
 					}
 
 				});
+		musleView.setVisibility(View.GONE);
+		mainLayout.addView(musleView);
+		
 		stretchView= BarButtonGenerator.createSettingButtonView(
 				R.string.coping_stretch, new OnClickListener() {
 
@@ -119,17 +138,11 @@ public class CopingActivity extends Activity {
 					}
 
 				});
-		breathView= BarButtonGenerator.createSettingButtonView(
-				R.string.coping_breath, new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						
-					}
-
-				});
-		breathView= BarButtonGenerator.createSettingButtonView(
-				R.string.coping_breath, new OnClickListener() {
+		stretchView.setVisibility(View.GONE);
+		mainLayout.addView(stretchView);
+		
+		musicView= BarButtonGenerator.createSettingButtonView(
+				R.string.coping_music, new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
@@ -138,9 +151,25 @@ public class CopingActivity extends Activity {
 
 				});
 		
-		mainLayout.addView(relaxedView);
-
+		musicView.setVisibility(View.GONE);
+		mainLayout.addView(musicView);
 		
+		meditationView= BarButtonGenerator.createSettingButtonView(
+				R.string.coping_meditation, new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						
+					}
+
+				});
+		
+		meditationView.setVisibility(View.GONE);
+		mainLayout.addView(meditationView);
+		
+		
+
+		//-------------
 		RelativeLayout recreationView = createListView(
 				R.string.setting_recreation, new OnClickListener() {
 
@@ -164,6 +193,7 @@ public class CopingActivity extends Activity {
 					}
 				});
 		mainLayout.addView(recreationView);
+		
 
 		String[] recreations = PreferenceControl.getRecreations();
 		recreationViews = new RelativeLayout[recreations.length];

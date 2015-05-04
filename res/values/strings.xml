@@ -341,7 +341,7 @@
     <string name="setting_limit">抱歉！最多只能選擇三項</string>
     <string name="story_test_cancel">下次再做</string>
     <string name="story_test_ok">確定送出</string>
-    <string name="title_activity_trigger">TriggerActivity</string>
+    <string name="title_activity_trigger">新增記事</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_tigger">TiggerActivity</string>
 
@@ -444,7 +444,7 @@
     <string name="note_negative">負面情緒</string>
     <string name="note_notgood">身體不舒服</string>
     <string name="note_positive">正面情緒</string>
-    <string name="note_selftest">自我測試</string>
+    <string name="note_selftest">測試控制力</string>
     <string name="note_temptation">渴癮及誘惑</string>
     <string name="note_conflict">與他人衝突</string>
     <string name="note_social">社交壓力</string>

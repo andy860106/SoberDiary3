@@ -5,6 +5,14 @@
     android:background="@color/black_gray"
     android:orientation="vertical"
     android:padding="0dp" >
+    
+    <LinearLayout 
+    	    android:id="@+id/note_title_layout"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="vertical"
+    	    >
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -56,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="類別："
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <LinearLayout
@@ -75,7 +83,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="5dp" >
 
         <TextView
             android:id="@+id/textView2"
@@ -95,7 +103,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="5dp" >
 
         <TextView
             android:id="@+id/textView3"
@@ -123,7 +131,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="5dp" >
 
         <TextView
             android:id="@+id/textView4"
@@ -149,7 +157,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="5dp" >
 
         <Button
             android:id="@+id/note_cancel"
